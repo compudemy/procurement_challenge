@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Proposal for Evaluation</title>
+</head>
+<body>
+    <h1>Upload Proposal</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Evaluate Proposal</button>
+    </form>
+</body>
+</html>
