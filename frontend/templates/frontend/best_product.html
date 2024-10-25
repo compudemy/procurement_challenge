@@ -1,0 +1,22 @@
+<!-- templates/best_product.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Product</title>
+</head>
+<body>
+    <h1>Best Product</h1>
+    {% if best_product %}
+        <h2>{{ best_product.product_name }}</h2>
+        <p>Type: {{ best_product.product_type }}</p>
+        <p>Price: ${{ best_product.price }}</p>
+        <p>Compliance: {{ best_product.compliance }}</p>
+        <p>Past Performance: {{ best_product.past_performance }}</p>
+    {% else %}
+        <p>No products available for evaluation.</p>
+    {% endif %}
+    <!-- <a href="{% url 'backend:manual_entry' %}">Add another product</a> -->
+</body>
+</html>

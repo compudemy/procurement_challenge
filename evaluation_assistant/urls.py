@@ -17,10 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
-
-urlpatterns += [
-    path('proposal_evaluation/', include('proposal_evaluation.urls')),
+    path('', include('frontend.urls', namespace='frontend')),
+    path('backend/', include('backend.urls', namespace='backend')),
 ]

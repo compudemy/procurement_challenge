@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    {% load static %}
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{% static 'frontend/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Product Management Dashboard</h1>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button" onclick="showTab('automation')">Automation</button>
+            <button class="tab-button active" onclick="showTab('manual')">Manual</button>
+        </div>
+        
+        <div id="automation" class="tab-content">
+            <h2>File Upload</h2>
+            <form>
+                <label for="file-upload">Upload a file:</label>
+                <input type="file" id="file-upload" name="file_upload" accept=".csv,.xls,.xlsx" required>
+                
+                <button type="submit">Preview File</button>
+            </form>
+        </div>
+        
+        <div id="manual" class="tab-content active">
+            <h2>Manual Entry</h2>
+            <form method="post" action="{% url 'backend:manual_entry' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="product-type">Product Type:</label>
+                    <select class="form-control" id="product-type" name="product_type">
+                        <option value="type1">Type 1</option>
+                        <option value="type2">Type 2</option>
+                        <option value="type3">Type 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" class="form-control" id="product-name" name="product_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="compliance">Compliance:</label>
+                    <input type="text" class="form-control" id="compliance" name="compliance" required>
+                </div>
+                <div class="form-group">
+                    <label for="past-performance">Past Performance:</label>
+                    <textarea class="form-control" id="past-performance" name="past_performance" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>            
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 My Company. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
